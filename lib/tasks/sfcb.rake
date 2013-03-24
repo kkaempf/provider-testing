@@ -1,9 +1,9 @@
-require_relative "provider-testing/helper"
+require "provider-testing/helper"
 
 task :cimom_is_sfcb do
-  Helper.cimom = :sfcb
+  ProviderTesting::Helper.cimom = :sfcb
 end
 
 task :sfcb => [:cimom_is_sfcb, :sfcb_configuration, :sfcb_registration] do
-  Helper.cimom.start
+  ProviderTesting::Helper.cimom.start
 end

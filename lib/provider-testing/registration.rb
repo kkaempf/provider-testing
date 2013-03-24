@@ -1,6 +1,6 @@
-require_relative "./env"
-require_relative "./mkreg"
-require_relative "./sfcb"
+require "provider-testing/env"
+require "provider-testing/mkreg"
+require "provider-testing/sfcb"
 
 #
 # register
@@ -11,7 +11,8 @@ require_relative "./sfcb"
 #     :regdir => where to find <klass>.registration, defaults to TOPLEVEL/samples/registration
 #
 
-def register_klass args
+module ProviderTesting
+def self.register_klass args
   args[:mofdir] ||= File.join(TOPLEVEL, "mof")
   args[:regdir] ||= File.join(TOPLEVEL, "registration")
   args[:namespace] ||= "test/test"
@@ -29,10 +30,12 @@ def register_klass args
   raise "Failed: #{cmd}" unless $? == 0
 end
 
-def mkrepos
+def self.mkrepos
   cimom = Helper.cimom
   cmd = "sfcbrepos -f -s #{cimom.stage_dir} -r #{cimom.registration_dir}"
 #  STDERR.puts cmd
   res = `#{cmd} 2> #{TMPDIR}/sfcbrepos.err`
   raise "Failed: #{cmd}" unless $? == 0
 end
+
+end # module

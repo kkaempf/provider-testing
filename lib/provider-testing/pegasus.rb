@@ -4,8 +4,9 @@
 require 'tmpdir'
 require 'uri'
 
-require_relative "./env"
+require "provider-testing/env"
 
+module ProviderTesting
 class Pegasus
   attr_reader :pid, :uri, :dir, :stage_dir, :registration_dir, :providers_dir
 private
@@ -142,3 +143,5 @@ public
     system "sudo #{@execfile} -s"
   end
 end
+
+end # module

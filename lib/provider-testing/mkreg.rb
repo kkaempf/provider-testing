@@ -2,7 +2,8 @@
 # Transform generic .registration format to
 #   sfcb-specific .reg format
 #
-def mkreg from, out
+module ProviderTesting
+def self.mkreg from, out
 #  STDERR.puts "mkreg #{from}"
   File.open(from, "r") do |f|
     while (l = f.gets)
@@ -22,11 +23,12 @@ def mkreg from, out
   end
 end
 
-def convert_registrations outfile, *regfiles
+def self.convert_registrations outfile, *regfiles
 #  STDERR.puts "convert_registrations => #{outfile}"
   File.open(outfile, "w+") do |out|
     regfiles.each do |regfile|
       mkreg regfile, out
     end
   end
+end
 end

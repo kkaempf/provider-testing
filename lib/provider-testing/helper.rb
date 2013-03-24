@@ -2,8 +2,9 @@
 # test/helper.rb
 #
 
-require_relative "./env"
+require "provider-testing/env"
 
+module ProviderTesting
 class Helper
   
   # called from rake
@@ -35,4 +36,5 @@ class Helper
   def self.teardown
     self.cimom.stop
   end
+end
 end

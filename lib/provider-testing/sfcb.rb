@@ -4,8 +4,9 @@
 require 'tmpdir'
 require 'uri'
 
-require_relative "./env"
+require "provider-testing/env"
 
+module ProviderTesting
 class Sfcb
   attr_reader :pid, :uri, :dir, :stage_dir, :registration_dir, :providers_dir
 
@@ -24,7 +25,7 @@ class Sfcb
 #    STDERR.puts "Sfcb directory at #{@dir}"
 
     # location of cmpi-bindings for Ruby
-    @providers_dir = File.expand_path(File.join(TOPLEVEL,"..","..","build","swig","ruby"))
+    @providers_dir = PROVIDERDIR
 
     @stage_dir = File.join(dir, "stage")
     Dir.mkdir @stage_dir rescue nil
@@ -69,7 +70,7 @@ class Sfcb
       # child
       sfcb_trace_file = File.join(TMPDIR, "sfcb_trace_file")
       sblim_trace_file = File.join(TMPDIR, "sblim_trace_file")
-      ruby_providers_dir = File.expand_path(File.join(TOPLEVEL,"samples","provider"))
+      ruby_providers_dir = PROVIDERDIR
       Dir.chdir File.expand_path("..", File.dirname(__FILE__))
       {
 	"SFCB_TRACE_FILE" => sfcb_trace_file,
@@ -98,3 +99,5 @@ class Sfcb
     @pid = nil
   end
 end
+
+end # module
