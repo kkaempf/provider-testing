@@ -12,10 +12,10 @@ class Helper
     @@cimom ||= case name
     when :sfcb
       require_relative "./sfcb"
-      Sfcb.new :tmpdir => TMPDIR, :provider => "#{TOPLEVEL}/samples/provider"
+      Sfcb.new :tmpdir => TMPDIR, :provider => PROVIDERDIR
     when :pegasus
       require_relative "./pegasus"
-      Pegasus.new :tmpdir => TMPDIR, :provider => "#{TOPLEVEL}/samples/provider"
+      Pegasus.new :tmpdir => TMPDIR, :provider => PROVIDERDIR
     else
       raise "Unknown CIMOM #{@cimom}"
     end

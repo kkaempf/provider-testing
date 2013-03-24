@@ -12,8 +12,8 @@ require_relative "./sfcb"
 #
 
 def register_klass args
-  args[:mofdir] ||= File.join(TOPLEVEL, "samples", "mof")
-  args[:regdir] ||= File.join(TOPLEVEL, "samples", "registration")
+  args[:mofdir] ||= File.join(TOPLEVEL, "mof")
+  args[:regdir] ||= File.join(TOPLEVEL, "registration")
   args[:namespace] ||= "test/test"
   klass = args[:klass]
   raise "No :klass passed to registration" unless klass
