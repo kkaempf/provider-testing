@@ -1,4 +1,4 @@
-require_relative "../test/helper"
+require_relative "provider-testing/helper"
 
 task :cimom_is_sfcb do
   Helper.cimom = :sfcb

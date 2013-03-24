@@ -1,4 +1,4 @@
-require_relative "../test/helper"
+require "provider-testing/helper"
 
 task :cimom_is_pegasus do
   Helper.cimom = :pegasus
