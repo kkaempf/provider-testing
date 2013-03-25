@@ -74,19 +74,20 @@ class Sfcb
       Dir.chdir File.expand_path("..", File.dirname(__FILE__))
       {
 	"SFCB_TRACE_FILE" => sfcb_trace_file,
-        "SFCB_TRACE" => "4",
+        "SFCB_TRACE" => 4,
         "SBLIM_TRACE_FILE" => sblim_trace_file,
-        "SBLIM_TRACE" => "4",
+        "SBLIM_TRACE" => 4,
+#        "CMPI_BINDINGS_TRACE_LEVEL" => 4,
 #        "CMPISFCC_DEBUG" => "true",
         "RUBY_PROVIDERS_DIR" => ruby_providers_dir
       }.each do |k,v|
-        ENV[k] = v
+        ENV[k] = v.to_s
       end
       File.delete(sfcb_trace_file) rescue nil
       File.delete(sblim_trace_file) rescue nil
       $stderr.reopen(File.join(TMPDIR, "sfcbd.err"), "w")
       $stdout.reopen(File.join(TMPDIR, "sfcbd.out"), "w")
-      Kernel.exec "#{@execfile}", "-t", "8", "-c", "#{@cfgfile}"#, "-t", "32768"
+      Kernel.exec "#{@execfile}", "-c", "#{@cfgfile}"#, "-t", "32768"
     end
     @pid
   end
