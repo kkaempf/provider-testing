@@ -2,7 +2,10 @@
 # test/env.rb
 #
 
-TOPLEVEL = ENV['TOPLEVEL'] || File.expand_path(File.join(File.dirname(__FILE__), ".."))
+unless defined? TOPLEVEL
+  TOPLEVEL = ENV['TOPLEVEL'] || "/tmp/provider-testing"
+  Dir.mkdir(TOPLEVEL) unless Dir.exists?(TOPLEVEL)
+end
 
 NAMESPACE = "test/test"
 
