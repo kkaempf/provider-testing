@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "provider-testing/version"
+require "provider-testing"
 
 Gem::Specification.new do |s|
   s.name        = "provider-testing"
