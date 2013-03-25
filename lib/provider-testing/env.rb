@@ -2,15 +2,7 @@
 # test/env.rb
 #
 
-
-##
-# Assuming __FILE__ lives in test/
-#
-TOPLEVEL ||= ENV['TOPLEVEL']
-unless TOPLEVEL
-  fdirname = File.dirname(__FILE__)
-  TOPLEVEL = File.expand_path(File.join(fdirname,".."))
-end
+TOPLEVEL = ENV['TOPLEVEL'] || File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 NAMESPACE = "test/test"
 
