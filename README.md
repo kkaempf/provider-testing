@@ -1,17 +1,20 @@
-About
------
+# About
 
 This is a full testsuite for (the Ruby part of) cmpi-bindings.
 
+# Author
 
-Requirements
-------------
+Copyright (c) 2013 Klaus Kämpf <kkaempf@suse.de>
+
+# License
+
+Licensed under the Ruby license
+
+# Requirements
 
 Ruby (1.8 or 1.9), rake, sblim-sfcb, sblim-sfcc and sfcc.gem (from rubygems.org)
 
-
-Invocation
-----------
+# Invocation
 
 Run
 
@@ -25,7 +28,6 @@ test/rake/samples/providers and execute the tests from
 test/rake/test_*.rb
 
 
-Issues
-------
+# Issues
 
 The testsuite currently fails to stop sfcbd after running all tests.
