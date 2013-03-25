@@ -13,8 +13,8 @@ $:.unshift(File.dirname(__FILE__)) unless
 module ProviderTesting
   VERSION = '0.2.0'
   require 'provider-testing/helper'
-  def self.setup *args
-    Helper.setup args
+  def self.setup klass, namespace = "test/test"
+    Helper.setup klass, namespace
   end
   def self.teardown
     Helper.teardown
