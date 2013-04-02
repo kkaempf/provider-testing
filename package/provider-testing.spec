@@ -1,5 +1,5 @@
 #
-# spec file for package providers-testing (Version 0.0.1)
+# spec file for package provider-testing (Version 0.0.1)
 #
 # Copyright (c) 2013 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -17,7 +17,7 @@
 
 # norootforbuild
 
-Name:           providers-testing
+Name:           provider-testing
 Url:            http://en.opensuse.org/Software_Management/CIM
 License:        LGPL-2.1
 Group:          Development/Tools/Other
