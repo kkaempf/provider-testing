@@ -1,5 +1,5 @@
 #
-# spec file for package provider-testing (Version 0.0.1)
+# spec file for package rubygem-provider-testing (Version 0.0.1)
 #
 # Copyright (c) 2013 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -17,37 +17,52 @@
 
 # norootforbuild
 
-Name:           provider-testing
+Name:           rubygem-provider-testing
+Version:        0.2.0
+%define mod_name provider-testing
+%define mod_full_name %{mod_name}-%{version}
+BuildRequires:  ruby-macros >= 1
 Url:            http://en.opensuse.org/Software_Management/CIM
 License:        LGPL-2.1
 Group:          Development/Tools/Other
 AutoReqProv:    on
-Version:        0.0.1
 Release:        2
 Summary:        CIM provider test framework
-Source0:        %{name}-%{version}.tar.bz2
-Requires:       cmpi-bindings-ruby
+Source:         %{mod_full_name}.gem
 Requires:       sblim-sfcb
-PreReq:         cmpi-provider-register
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildArch:      noarch
 
 %description
 A Ruby framework for automated CIM provider testing
 
+%package doc
+Summary:        RDoc documentation for %{mod_name}
+Group:          Development/Languages/Ruby
+Requires:       %{name} = %{version}
+
+%description doc
+Documentation generated at gem installation time.
+Usually in RDoc and RI formats.
 
 %prep
-%setup -n %{name}
+#gem_unpack
+#if you need patches, apply them here and replace the # with a % sign in the surrounding lines
+#gem_build
 
 %build
 
 %install
-make install DESTDIR=%{buildroot}
+%gem_install -f
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
+%{_libdir}/ruby/gems/%{rb_ver}/cache/%{mod_full_name}.gem
+%{_libdir}/ruby/gems/%{rb_ver}/gems/%{mod_full_name}/
+%{_libdir}/ruby/gems/%{rb_ver}/specifications/%{mod_full_name}.gemspec
 
-%changelog
+%files doc
+%defattr(-,root,root,-)
+%doc %{_libdir}/ruby/gems/%{rb_ver}/doc/%{mod_full_name}/
