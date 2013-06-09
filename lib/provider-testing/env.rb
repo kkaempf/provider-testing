@@ -10,4 +10,4 @@ end
 NAMESPACE = "test/test"
 
 TMPDIR = File.join(TOPLEVEL, "tmp")
-PROVIDERDIR ||= "#{TOPLEVEL}/src"
+PROVIDERDIR = "#{TOPLEVEL}/src" unless defined?(PROVIDERDIR)
