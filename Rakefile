@@ -1,7 +1,6 @@
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 
-VERSION  = '0.0.2'
 TOPLEVEL = File.dirname(__FILE__)
 NAME     = File.basename TOPLEVEL
 MOFDIR   = "/usr/share/mof/#{NAME}"
