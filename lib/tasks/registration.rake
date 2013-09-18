@@ -3,8 +3,8 @@ task :sfcb_registration => [:sfcb_configuration] do |t|
   
   require "provider-testing/registration"
   Dir['registration/*.registration'].each do |regname|
-    klass = File.basename regname, ".registration"
-    ProviderTesting.register_klass :klass => klass
+    puts "  #{regname}"
+    ProviderTesting.register_file regname
   end
   ProviderTesting.mkrepos
 end
