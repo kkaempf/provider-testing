@@ -27,7 +27,7 @@ class Helper
   
   # called from test/unit
   
-  def self.setup klass, namespace = "test/test"
+  def self.setup klass, namespace = "root/cimv2"
     client = Sfcc::Cim::Client.connect(:uri => self.cimom.uri, :verify => false)
     raise "Connection error" unless client
     op = Sfcc::Cim::ObjectPath.new(namespace, klass, client)
