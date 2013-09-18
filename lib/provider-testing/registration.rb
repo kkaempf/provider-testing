@@ -12,19 +12,30 @@ require "provider-testing/sfcb"
 #
 
 module ProviderTesting
+def self.register_file file
+  self.rdreg file do |reg|
+    #  0         1         2            3              4..-1
+    #  classname namespace providername providermodule caps
+    self.register_klass :klass => reg[0], :namespace => reg[1]
+  end
+end
+
 def self.register_klass args
   args[:mofdir] ||= File.join(TOPLEVEL, "mof")
   args[:regdir] ||= File.join(TOPLEVEL, "registration")
   args[:namespace] ||= "test/test"
-  klass = args[:klass]
+  self.register args[:klass], args[:namespace], args[:mofdir], args[:regdir]
+end
+
+def self.register klass, namespace, mofdir, regdir
   raise "No :klass passed to registration" unless klass
   tmpregname = File.join(TMPDIR, "#{klass}.reg")
 
   # convert generic <klass>.registration to sfcb-specific <klass>.reg
-  convert_registrations tmpregname, File.join(args[:regdir], "#{klass}.registration")
+  convert_registrations tmpregname, File.join(regdir, "#{klass}.registration")
 
   # stage .reg+.mof to namespace
-  cmd = "sfcbstage -s #{Helper.cimom.stage_dir} -n #{args[:namespace]} -r #{tmpregname} #{File.join(args[:mofdir],args[:klass])}.mof"
+  cmd = "sfcbstage -s #{Helper.cimom.stage_dir} -n #{namespace} -r #{tmpregname} #{File.join(mofdir,klass)}.mof"
 #  STDERR.puts cmd
   res = `#{cmd} 2> #{TMPDIR}/sfcbstage.err`
   raise "Failed: #{cmd}" unless $? == 0
