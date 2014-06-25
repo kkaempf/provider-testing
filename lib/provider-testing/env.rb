@@ -4,7 +4,7 @@
 
 unless defined? TOPLEVEL
   TOPLEVEL = ENV['TOPLEVEL'] || "/tmp/provider-testing"
-  Dir.mkdir(TOPLEVEL) unless Dir.exists?(TOPLEVEL)
+  Dir.mkdir(TOPLEVEL) unless Dir.exist?(TOPLEVEL)
 end
 
 NAMESPACE = "test/test"
