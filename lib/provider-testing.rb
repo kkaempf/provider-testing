@@ -11,7 +11,7 @@ $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
 module ProviderTesting
-  VERSION = '0.3.2'
+  VERSION = '0.4.0'
   require 'provider-testing/helper'
   def self.setup klass = "", namespace = "root/cimv2"
     Helper.setup klass, namespace
