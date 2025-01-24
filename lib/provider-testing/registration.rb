@@ -12,6 +12,8 @@ require "provider-testing/sfcb"
 #
 
 module ProviderTesting
+
+# register a provider from file
 def self.register_file file
   self.rdreg file do |reg|
     #  0         1         2            3              4..-1
@@ -20,6 +22,7 @@ def self.register_file file
   end
 end
 
+# register a class (served by a provider)
 def self.register_klass args
   args[:mofdir] ||= File.join(TOPLEVEL, "mof")
   args[:regdir] ||= File.join(TOPLEVEL, "registration")
@@ -27,6 +30,11 @@ def self.register_klass args
   self.register args[:klass], args[:namespace], args[:mofdir], args[:regdir]
 end
 
+# do a full registration of a CIM class within a namespace
+# input: klass   CIM class to register
+# input: namespace  namespace to register to
+# input: mofdir  directory of .mof files
+# input: regdir  directory of .reg files
 def self.register klass, namespace, mofdir, regdir
   raise "No :klass passed to registration" unless klass
   tmpregname = File.join(TMPDIR, "#{klass}.reg")
@@ -41,6 +49,7 @@ def self.register klass, namespace, mofdir, regdir
   raise "Failed: #{cmd}" unless $? == 0
 end
 
+# create (sfcb) provider repository
 def self.mkrepos
   cimom = Helper.cimom
   cmd = "sfcbrepos -f -s #{cimom.stage_dir} -r #{cimom.registration_dir}"

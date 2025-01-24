@@ -3,6 +3,7 @@
 #   sfcb-specific .reg format
 #
 module ProviderTesting
+
 # read .registration file, return array of
 #  0         1         2            3              4..-1
 #  classname namespace providername providermodule caps
@@ -19,6 +20,9 @@ def self.rdreg from
   end
 end
 
+# create a provider registration config
+# input: from  registration data
+# input: out   file to write registration config to
 def self.mkreg from, out
 #  STDERR.puts "mkreg #{from}"
   self.rdreg from do |reg|
@@ -32,6 +36,10 @@ def self.mkreg from, out
   end
 end
 
+# converts multiple registrations to a config readable by CIMOM
+# input: outfile  file to write config to
+# input: regfiles registration files to read
+#
 def self.convert_registrations outfile, *regfiles
 #  STDERR.puts "convert_registrations => #{outfile}"
   File.open(outfile, "w+") do |out|

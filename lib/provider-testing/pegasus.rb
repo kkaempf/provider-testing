@@ -7,9 +7,12 @@ require 'uri'
 require "provider-testing/env"
 
 module ProviderTesting
+
+# Interface class to start/stop Pegasus CIMOM
 class Pegasus
   attr_reader :pid, :uri, :dir, :stage_dir, :registration_dir, :providers_dir
 private
+  # read configuration of running Pegasus
   def getconfig name
     result = nil
     pipe = IO.popen "sudo cimconfig -g #{name}"
@@ -23,12 +26,15 @@ private
     pipe.close
     result
   end
+
+  # set configuration of running Pegasus
   def setconfig name, value
     puts "Setting #{name} to '#{value}'"
     system "sudo cimconfig -p -s '#{name}=#{value}'"
   end
 public
-  
+
+  # start Pegasus
   def initialize args = {}
     @execfile = "/usr/sbin/cimserver"
     @port = 12345
@@ -53,6 +59,7 @@ public
   
   end
 
+  # return uri to connect to
   def uri
     unless @uri
       if getconfig("enableHttpConnection") == "true"
@@ -70,6 +77,7 @@ public
     @uri
   end
 
+  # make Pegasus configuration
   def mkcfg
 #    trace_components = [ALL
 #    AsyncOpNode
@@ -131,6 +139,7 @@ public
     }
   end
 
+  # start Pegasus
   def start
     unless system "sudo #{@execfile} --status"
       cmd = ["sudo", @execfile] + @config.collect{ |k,v| "#{k}=#{v}" }
@@ -139,6 +148,7 @@ public
     end
   end
 
+  # stop Pegasus
   def stop
     system "sudo #{@execfile} -s"
   end

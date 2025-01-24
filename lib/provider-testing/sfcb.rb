@@ -7,9 +7,12 @@ require 'uri'
 require "provider-testing/env"
 
 module ProviderTesting
+
+# Interface class to start/stop SFCB CIMOM
 class Sfcb
   attr_reader :pid, :uri, :dir, :stage_dir, :registration_dir, :providers_dir
 
+  # create SFCB execution environment
   def initialize args = {}
     @execfile = "/usr/sbin/sfcbd"
     @port = 12345
@@ -41,6 +44,7 @@ class Sfcb
     @uri = URI::HTTP.build :host => 'localhost', :port => @port, :userinfo => "wsman:secret"
   end
 
+  # create `sfcb.cfg` file
   def mkcfg
     @cfgfile = File.join(@dir, "sfcb.cfg")
     File.open(@cfgfile, "w+") do |f|
@@ -64,6 +68,7 @@ class Sfcb
     end
   end
 
+  # start sfcb
   def start
     raise "Already running" if @pid
     @pid = fork
@@ -93,6 +98,7 @@ class Sfcb
     @pid
   end
 
+  # stop sfcb
   def stop
     return unless @pid
     Process.kill "QUIT", @pid
