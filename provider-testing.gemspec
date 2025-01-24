@@ -17,7 +17,7 @@ instance of the SFCB CIMOM to run tests against CIM providers}
   s.rubyforge_project = "provider-testing"
 
   # Ruby SFCC bindings
-  s.add_dependency("sfcc", ["~> 0.6"])
+  s.add_dependency("sfcc", ["~> 0.10"])
 
   s.add_development_dependency('rake')
   s.add_development_dependency('bundler')
