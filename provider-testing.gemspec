@@ -9,23 +9,26 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Klaus Kämpf"]
   s.email       = ["kkaempf@suse.de"]
+  s.license     = "Ruby"
   s.homepage    = "https://github.com/kkaempf/providers-testing"
   s.summary     = %q{A testing framework for CIM providers}
   s.description = %q{This framework uses Ruby, Rake and a local
 instance of the SFCB CIMOM to run tests against CIM providers}
 
-  s.rubyforge_project = "provider-testing"
+  s.required_ruby_version = ">= 2.4"
 
   # Ruby SFCC bindings
   s.add_dependency("sfcc", ["~> 0.10"])
 
-  s.add_development_dependency('rake')
-  s.add_development_dependency('bundler')
+  s.add_development_dependency('rake', ["~> 0"])
+  s.add_development_dependency('bundler', ["~> 0"])
 
-  s.files         = `git ls-files`.split("\n")
-  s.files.reject! { |fn| fn == '.gitignore' }
+  s.files         = [
+    "Gemfile",
+    "LICENSE",
+    "README.md",
+    "Rakefile"] + Dir.glob("**/*.rb") + Dir.glob("**/*.rake")
+
   s.extra_rdoc_files    = Dir['README.md', 'LICENSE']
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 end
