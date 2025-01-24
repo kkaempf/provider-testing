@@ -50,7 +50,6 @@ class Sfcb
 	"enableHttp" => true,
 	"httpPort" => @port,
 	"enableHttps" => false,
-	"enableSlp" => false,
 	"enableInterOp" => false,
         "providerSampleInterval" => 5,
 	"providerTimeoutInterval" => 10,
